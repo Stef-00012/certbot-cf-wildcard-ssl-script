@@ -24,6 +24,16 @@ if [ -z "$CONTACT" ]; then
     exit 0
 fi
 
+if [ -z "$ZONE_ID" ]; then
+    echo "missing cloudflare zone id in creds file"
+    exit 0
+fi
+
+if [ -z "$API_KEY" ]; then
+    echo "missing cloudflare API key in creds file"
+    exit 0
+fi
+
 certbot certonly -n --agree-tos --manual \
     --no-eff-email --preferred-challenges=dns \
     --manual-auth-hook "$HOOK_DIRECTORY/auth.sh" \
